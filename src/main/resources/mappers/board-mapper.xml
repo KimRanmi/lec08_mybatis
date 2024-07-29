@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="boardMapper" >
+	<select id="selectBoardList" resultType="com.gn.board.vo.Board" parameterType="com.gn.board.vo.Board">
+		SELECT *
+		FROM `board`
+		LIMIT #{limitPageNo}, #{numPerPage}
+	</select>
+	<select id="selectBoardCount" resultType="int">
+		select count(*)
+		from `board`
+	</select>
+	<select id="selectBoardOne" resultType="com.gn.board.vo.Board" parameterType="_int">
+		select *
+		from `board`
+		where board_no = #{board_no}
+	</select>
+	<update id="boardUpdate" parameterType="com.gn.board.vo.Board">
+		update `board` set board_title = #{board_title} , board_content= #{board_content}
+		where board_no = #{board_no}
+	</update>
+</mapper>
