@@ -1,6 +1,7 @@
 package com.gn.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -28,12 +29,27 @@ public class BoardListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Board option = new Board();
 		
+		List<String> arr = new ArrayList<String>();
+		arr.add("a");
+		arr.add("b");
+		arr.add("c");
+		option.setBad_word(arr);
+		
+		String orderType = request.getParameter("order_type");
+		option.setOrder_type(orderType);
+		
+		String boardTitle = request.getParameter("board_title");
+		option.setBoard_title(boardTitle);
+		
+		String board_content = request.getParameter("board_content");
+		option.setBoard_content(board_content);
+		
 		String nowPage = request.getParameter("nowPage");
 		if(nowPage != null) {
 			option.setNowPage(Integer.parseInt(nowPage));
 		}
 		
-		option.setTotalData(new BoardService().selectBoardCount());
+		option.setTotalData(new BoardService().selectBoardCount(option));
 		
 		// Board 목록 조회(mybatis)화면으로 전달(jstl)
 		List<Board> resultList = new BoardService().selectBoardList(option);

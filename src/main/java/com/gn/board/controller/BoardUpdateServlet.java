@@ -32,12 +32,23 @@ public class BoardUpdateServlet extends HttpServlet {
 		b.setBoard_no(boardNo);
 		b.setBoard_title(boardTitle);
 		b.setBoard_content(boardContent);
+		
 		// 2. Service -> Dao -> board-mapper.xml 통해 데이터 update
 		int result = new BoardService().boardUpdate(b);
+		
 		// 3. board_title, board_content를 수정하면 되는데 기준은 board_no
 		// 4. update 쿼리는 resultType이 무조건 int이므로 적지 않음.
 		
-		System.out.println(boardNo+" : "+boardTitle+" : "+boardContent);			
+		System.out.println(result);
+		
+		String resp_code = "500"; // 이유를 알 수 없는 오류
+		if(result > 0) {
+			resp_code ="200"; //정상적인 동작
+		}
+		
+		response.setContentType("text/html;charset=utf-8");
+		response.getWriter().append(resp_code);
+		
 	}
 
 	
