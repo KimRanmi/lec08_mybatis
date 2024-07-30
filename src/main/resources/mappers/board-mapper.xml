@@ -66,7 +66,7 @@
 		delete from `board` where board_no = #{board_no}
 	</delete>
 	
-	<insert id="insetBoard" parameterType="com.gn.board.vo.Board">
-		insert into `board` (board_title,board_content,board_writer) values (#{board_title},#{board_content},1)
+	<insert id="insertBoard" parameterType="com.gn.board.vo.Board">
+		insert into `board` (board_title,board_content) values (#{board_title},#{board_content})
 	</insert>
 </mapper>

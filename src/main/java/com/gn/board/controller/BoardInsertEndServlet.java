@@ -27,6 +27,7 @@ public class BoardInsertEndServlet extends HttpServlet {
 		String title = request.getParameter("board_title");
 		String content = request.getParameter("board_content");
 		
+		System.out.println(title);
 		
 		Board b = new Board();
 		b.setBoard_title(title);

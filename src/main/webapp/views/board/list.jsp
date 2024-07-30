@@ -91,7 +91,7 @@
 					// ajax로 /boardInsertEnd(post) 경로에 데이터 전달해서 insert
 					// insert 잘 수행되었을 때 : 목록 화면 전환
 					// insert 실패 : "게시글 등록 중 오류가 발생하였습니다.";
-					insertBoard = function(){
+					
 					const xhr = new XMLHttpRequest();
 					xhr.open("post","<%=request.getContextPath()%>/boardInsertEnd",true);
 					xhr.onreadystatechange = function(){
@@ -104,10 +104,10 @@
 								alert("게시글 등록중 오류가 발생하였습니다.");
 							}
 						}
-					}
+					
 					}
 				xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
-				xhr.send("&board_title="+title+"&board_content="+content);
+				xhr.send("board_title="+title+"&board_content="+content);
 					}
 					},1000);
 			}
